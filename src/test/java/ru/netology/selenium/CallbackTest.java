@@ -11,11 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.LogManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CallbackTest {
     private WebDriver driver;
@@ -24,6 +23,8 @@ class CallbackTest {
 // автоматическая настройка хромдрайвера с помощью WebDriver Manager
         WebDriverManager.chromedriver().setup();
     }
+
+
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -43,12 +44,36 @@ class CallbackTest {
     }
     @Test
     public void shouldTestSomething() {
-        driver.findElement(By.cssSelector("[data-test-id='name']input")).sendKeys("Василий Петров");
+
+    //    WebElement form = driver.findElement(By.cssSelector("form"));
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Василий Петров");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79130000000");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
-        driver.findElement(By.cssSelector(".button")).click();
-        String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector(".button")).click();;
+
+
+       WebElement result = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
+
+       assertTrue(result.isDisplayed());
+       assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", result.getText().trim());
+
+
+//        driver.findElement(By.cssSelector("[data-test-id='name']input")).sendKeys("Василий Петров");
+//        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79130000000");
+//        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+//        driver.findElement(By.cssSelector(".button")).click();
+//        WebElement form = driver.findElement(By.cssSelector("form"));
+//        form.findElement(By.cssSelector("[data-test-id='name']input")).sendKeys("Василий Петров");
+//        form.findElement(By.cssSelector("[data-test-id='phone']input")).sendKeys("+79130000000");
+//        form.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+//        form.findElement(By.cssSelector(".button")).click();
+
+//        WebElement result = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
+//        assertTrue(result.isDisplayed());
+//        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", result.getText().trim());
+//        String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
+
+//        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
 
 

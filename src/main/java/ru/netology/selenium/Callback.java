@@ -1,4 +1,4 @@
-package ru.netology.selenium;
+//package ru.netology.selenium;
 
-public class Callback {
-}
+//public class Callback {
+//}
